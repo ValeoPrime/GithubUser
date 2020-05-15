@@ -1,10 +1,15 @@
 import React, {useContext, useState} from 'react'
 import {AlertContext} from '../context/alert/alertContext'
+import { GithubContext } from '../context/github/githubContext'
 
 export const Search = () => {
 
     const [startInputValue, setInputValue] = useState('')
-    const {show} = useContext(AlertContext)
+    const {show, hide} = useContext(AlertContext)
+    const github = useContext(GithubContext)
+
+    // console.log('ГИТХАБ КОНТЕКСТ',github);
+    
 
    const onSubmit = (event) => {
     if(event.key !== 'Enter'){
@@ -12,9 +17,10 @@ export const Search = () => {
     }
 
     if(startInputValue.trim()){
-        
-        //запрос на получение данных
+        hide()
+        github.search(startInputValue.trim())
     } else {
+        github.clearUsers()
         show('Чтобы я что-то поискал, надо что-то ввести', 'info')
     }
     
