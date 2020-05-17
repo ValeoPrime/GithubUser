@@ -2,6 +2,7 @@ import React, { Fragment, useContext } from 'react'
 import {Search} from '../components/Search'
 import { Card } from '../components/Card'
 import { GithubContext } from '../context/github/githubContext'
+import { Loader } from '../components/loader/Loader'
 
 export const Home = () => {
     const {loading, users} = useContext(GithubContext)
@@ -15,8 +16,8 @@ export const Home = () => {
 
             {loading 
             ?
-            <p className='text-center'>ИДЕТ ЗАГРУЗКА</p>
-            :
+            <Loader/>
+            : 
             users.map(user => {
                 return (
                     <div className='col-sm-4 mb-4' key={user.id}>
@@ -25,7 +26,8 @@ export const Home = () => {
                         />
                     </div>
                 )
-            })}
+            })
+        }
             </div>
         </Fragment> 
     )

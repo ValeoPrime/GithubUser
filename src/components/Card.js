@@ -3,7 +3,6 @@ import {Link} from 'react-router-dom'
 
 
 export const Card = ({user}) => {
-    console.log('УСЕР',user);
     
     return (
         <div className="card .bg-gradient-light pt-4" style={{ alignItems: 'center', }}>

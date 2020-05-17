@@ -29,9 +29,9 @@ export const Profile = ({ match }) => {
       
       return (
         <Fragment>
-          <Link to="/" className="btn btn-link">На главную</Link>
-    
-          <div className="card mb-4">
+          <Link to="/" className="btn btn-link btn-light">На главную</Link>
+          
+          <div className="card mb-4 mt-2">
             <div className="card-body">
               <div className="row">
                 <div className="col-sm-4 text-center">
@@ -81,8 +81,28 @@ export const Profile = ({ match }) => {
     
           {repos.join()
           }
+        <div className='row'>
+
+          { repos.map(item => {
+            return (
+            <div className='col-sm-4 mb-4' key={item.id}>
+              <div className="card">
+                <div className="card-body">
+                  <h5 className="card-title">{item.name}</h5>
+                  <h6 className="card-subtitle mb-2 text-muted">Создан: {item.created_at}</h6>
+                  <p className="card-text">{item.description || 'Автор не указал описание:('}</p>
+                  <a href={item.html_url} className="btn btn-primary">Перейти на репозиторий в Github</a>
+                </div>
+              </div>
+            </div>
+
+            )
+          })
+
+          }
           
-          
-        </Fragment>
+        </div>
+          </Fragment> 
+        
       )
 }
